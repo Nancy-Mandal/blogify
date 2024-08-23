@@ -14,9 +14,16 @@ const { checkForAuthenticationCookie } = require("./middlewares/authentication")
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONGO_URL)
-        .then(e => console.log('MongoDB Connected'))
-        .catch(err => console.error('MongoDB Connection Error:', err));
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+})
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.error('MongoDB Connection Error:', err
+
+));
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
